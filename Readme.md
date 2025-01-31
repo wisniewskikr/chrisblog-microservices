@@ -12,3 +12,15 @@ USAGE
 ##### Opional steps:
 1. In a browser check BE API documentaton with `http://localhost:8081/swagger-ui/index.html`
 1. In a Rest Client (e.g. Postman) display articles with (GET method) `http://localhost:8081/api/v1/article?categoryId=0&page=1&sorting=date_decreasing`
+
+
+TODO
+----
+
+* Change DB from H2 to MySql
+* Implement Flyway tool
+* Add Servie Discovery
+* Add Api Gateway
+* Add Grafana
+* Add Kubernetes configuration
+* Update Readme file
