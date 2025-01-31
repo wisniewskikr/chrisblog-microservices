@@ -2,12 +2,12 @@ USAGE
 -----
 
 ##### Required steps:
-1. In the first command line tool **start BE microservice** with `mvn -f ./chrisblog-microservices_be spring-boot:run`
-1. In the second command line tool **start FE microservice** with `mvn -f ./chrisblog-microservices_fe spring-boot:run`
+1. Start **Docker** tool
+1. In a command line tool **start Docker containers** with `docker-compose -f .\docker-compose\docker-compose.yaml up -d --build`
 1. In the browser visit **blog page** with `http://localhost:8080`
 1. Clean up environment
-    * In the second command line tool stop FE microservice with ctrl + C
-    * In the first command line tool stop BE miroservice with ctrl + C
+    * In a command line tool **remove Docker containers** with `docker-compose -f .\docker-compose\docker-compose.yaml down --rmi all`
+    * Stop **Docker** tool
 
 ##### Opional steps:
 1. In a browser check BE API documentaton with `http://localhost:8081/swagger-ui/index.html`

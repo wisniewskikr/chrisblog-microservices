@@ -18,10 +18,12 @@ services:
 
   fe:
     image: fe:0.0.1
-    container_name:
+    container_name: fe
     build:
       context: ./../chrisblog-microservices_fe
       dockerfile: Dockerfile
+    environment:
+      - api.url=http://be:8081
     ports:
       - 8080:8080
     healthcheck:
