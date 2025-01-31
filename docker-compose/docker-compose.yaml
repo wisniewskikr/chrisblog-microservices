@@ -1,0 +1,32 @@
+version: "4"
+services:
+
+  be:
+    image: be:0.0.1
+    container_name: be
+    build:
+      context: ./../chrisblog-microservices_be
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8081
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/actuator/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+
+  fe:
+    image: fe:0.0.1
+    container_name:
+    build:
+      context: ./../chrisblog-microservices_fe
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
