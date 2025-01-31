@@ -5,35 +5,32 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.2</version>
+		<version>3.4.2</version>
 		<relativePath/>
 	</parent>
 
 	<groupId>pl.kwi</groupId>
 	<artifactId>chrisblog-microservices_fe</artifactId>	
-	<version>0.5.0</version>
+	<version>0.0.1</version>
 
 	<properties>
-		<java.version>17</java.version>
+		<java.version>23</java.version>
 	</properties>
 
 	<dependencies>
     	
+		<!-- Spring dependencies -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+      		<groupId>org.springframework.boot</groupId>
+      		<artifactId>spring-boot-starter-web</artifactId>
+    	</dependency>
+
+		<!-- Thymeleaf -->
 		<dependency>
       		<groupId>org.springframework.boot</groupId>
       		<artifactId>spring-boot-starter-thymeleaf</artifactId>
     	</dependency>
-		
-		<!-- Remove Tomcat embedded dependencies -->
-		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
+
 
 		<!-- Hot swapping, disable cache for template, enable live reload -->
 		<dependency>
@@ -58,9 +55,7 @@
 	</dependencies>
 		
 	<build>
-		<finalName>chrisblog</finalName>
 		<plugins>
-			<!-- Package as an executable jar/war -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
