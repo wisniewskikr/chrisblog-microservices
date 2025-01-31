@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head th:replace="common/head :: head ('Chris Blog - About Me', 'More details about the author of the blog')"/>
+  
+  <body>
+
+	<div id="colorlib-page" th:object="${command}">
+	<form id="aboutForm" method="post">
+		<input type="hidden" th:field="*{articleId}"/>
+		<input type="hidden" th:field="*{currentPage}"/>
+		<input type="hidden" th:field="*{selectedCategory}"/>
+		<input type="hidden" th:field="*{selectedSorting}"/>
+		<input type="hidden" th:field="*{selectedTag}"/>
+		<input type="hidden" th:field="*{searchText}"/>
+	
+		<div id="colorlib-main">
+			<section class="ftco-about img ftco-section ftco-no-pt ftco-no-pb" id="about-section">
+	    	<div class="container-fluid px-0">
+	    		<div class="row d-flex">
+	    			<div class="col-md-6 d-flex">
+	    				<div class="img d-flex align-self-stretch align-items-center js-fullheight" style="background-image:url(https://chrisblog.s3-eu-west-1.amazonaws.com/about/about.jpg);">
+	    				</div>
+	    			</div>
+	    			<div class="col-md-6 d-flex align-items-center">
+	    				<div class="text px-4 pt-5 pt-md-0 px-md-4 pr-md-5 ftco-animate">
+		            <h2 class="mb-4">I'm <span>Krzysztof Wisniewski</span> a Polish IT Guy.</h2>
+		            <p>I am interested in books, movies, travels and Latino dances - salsa, bachata, kizomba. 
+		            Professionally I'm IT guy who tries to improve his programming skills and share his knowledge with others.
+		            If you want to contact me please use my email <a href="mailto:wisniewskikr@gmail.com">wisniewskikr@gmail.com</a> 
+		            , <a href="https://www.facebook.com/krzysztof.wisniewski.1979" target="_blank">Facebook page</a>
+		            or <a href="https://www.instagram.com/krzysztof.wisniewski.1979/" target="_blank">Instagram page</a>.</p>
+		            <a th:href="|javascript:submitAction('aboutForm', 'about/back')|" class="btn py-3 px-4 btn-primary">Go Back</a>
+	            </div>
+		        </div>
+	        </div>
+	    	</div>
+	    </section>
+		</div><!-- END COLORLIB-MAIN -->
+	
+	</form>	
+	</div><!-- END COLORLIB-PAGE -->
+	
+	<js th:replace="common/js"/>
+    
+  </body>
+</html>

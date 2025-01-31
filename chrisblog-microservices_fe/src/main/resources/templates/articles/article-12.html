@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" th:object="${command}">
+  
+  <head th:replace="common/head :: head (*{article.title}, *{article.pageDescription})"/>
+  
+  <body onload="showAnswers(false);">
+
+	<div id="colorlib-page">
+	<form id="articleForm" method="post">
+		<input type="hidden" th:field="*{articleId}"/>
+		<input type="hidden" th:field="*{currentPage}"/>
+		<input type="hidden" th:field="*{selectedCategory}"/>
+		<input type="hidden" th:field="*{selectedSorting}"/>
+		<input type="hidden" th:field="*{selectedTag}"/>
+		<input type="hidden" th:field="*{searchText}"/>
+		
+			
+		<div id="colorlib-main" class="article">
+	    	<div class="container">	    			
+	    			<div class="col-lg-12 px-md-7 py-7">
+	    			
+	    				<span class=" d-none d-xl-block">
+		    				<p class="blog-img">
+			    				<a th:href="|javascript:submitAction('articleForm', 'back')|">
+					              <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/common/chris_blog.png}" alt="" class="img-fluid">
+					            </a>
+				            </p>
+			            </span>
+	    				
+	    				<div class="nav d-flex align-items-center full-height">
+	    					<a th:href="|javascript:submitAction('articleForm', 'back')|">
+          						<span class="nav-item">Home</span>
+        					</a>
+        					<a th:href="|javascript:submitAction('articleForm', 'about')|">
+          						<span class="nav-item">About Me</span>
+        					</a>
+	    				</div>
+	    				
+	    				<div class="row articleSection pt-md-4 articleBanner d-flex align-items-center justify-content-center full-height"	    					
+	    					style="background-image: url(https://chrisblog.s3-eu-west-1.amazonaws.com/banner/Travels/banner.jpg);"
+	    					>
+    						<div class="col-lg-12 px-md-7 py-7" >
+    							<div class="row articleSection d-flex align-items-center justify-content-center full-height ">
+    								<div class="mb-3 articleBannerText" th:text="*{article.title}">Article Title</div>
+    							</div>
+    							<div class="row articleSection meta-wrap">
+    								<p>
+	              						<span class="icon-wrap"><i class="icon-calendar mr-2"></i><span th:text="*{article.date}"/></span>
+	              						<span class="icon-wrap"><i class="icon-person mr-2"></i><span th:text="*{article.author}"/></a></span>	              						
+	              						<!-- span class="icon-wrap"><i class="icon-folder mr-2"></i><span th:text="*{article.category.name}"/></span -->
+	              					</p>
+    							</div>
+    						</div>
+    					</div> 
+    					
+    					<span class="d-none d-xl-block">
+	    					<div class="avatarIcon">
+								<div class="avatar">
+									<img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/common/none.png}" alt="">
+								</div>
+								<span class="author_name">By: <b th:text="*{article.author}"/></span>
+							</div>
+						</span> 
+						
+						<hr class="line d-none d-xl-block">						
+    						
+   						<h2 class="mb-3 mt-5 articleSectionTitle">Introduction</h2>
+   						<div class="row articleSection pt-md-4" th:utext="*{article.description}">Article desciption</div>
+   						
+   						<p class="article-img">
+			              <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-{articleId}/main.jpg(articleId=*{articleId})}" alt="" class="img-fluid">
+			            </p>
+			            <p class="article-img-title">Image: Vietnam, Sa Pa. Town centre..</p>
+			            
+			            <h2 class="mb-3 mt-5 articleSectionTitle">Sa Pa Town</h2>				            
+			            <div class="row articleSection pt-md-4">
+				            Sapa is a small, mountain town in Lao Cai Province. It is located about 350 km northwest of Hanoi, close to the Chinese border. 
+				            Here's where you'll find the Hoang Lien Son range of mountains, which includes Fan Si Pan�the country's highest peak.
+			            </div>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/1.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Sa Pa Town</p>
+			            </p>
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/2.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Sa Pa Town</p>
+			            </p>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/3.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Sa Pa Town</p>
+			            </p>
+			            
+			            <h2 class="mb-3 mt-5 articleSectionTitle">Ham Rong Mountain</h2>				            
+			            <div class="row articleSection pt-md-4">
+				            The name of Ham Rong was derived from the legend that, in primitive age there were a couple of dragons 
+				            which became attached to each other while the deluge was rising high. Walking up, they hurrily separated from each other but failed. 
+				            They were drifted to different places.
+			            </div>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/4.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Ham Rong Mountain</p>
+			            </p>
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/5.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Ham Rong Mountain</p>
+			            </p>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/6.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Ham Rong Mountain</p>
+			            </p>
+			            
+			            <h2 class="mb-3 mt-5 articleSectionTitle">Cat Cat village and Muong Hoa valley</h2>				            
+			            <div class="row articleSection pt-md-4">
+				            Cat Cat Village is located on the Muong Hoa Valley, this is the village of the H�Mong hill tribe. It�s far from Sapa Town 2 km 
+				            and takes you 45 minutes to walk here. The village is on the slope of the hill and easy walking, rice field and corn are grown here. 
+				            Visiting Cat Cat village, we can have a chance to visit a big waterfall on the stream and the old Hydro Electric Power Station built by the French here. 
+				            That is the image of young women sitting by looms with colorful pieces of brocade decorated with designs of flowers and birds.
+			            </div>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/7.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Cat Cat village and Muong Hoa valley</p>
+			            </p>
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/8.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Cat Cat village and Muong Hoa valley</p>
+			            </p>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/9.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Cat Cat village and Muong Hoa valley</p>
+			            </p>			            
+			      			            
+			            <h2 class="mb-3 mt-5 articleSectionTitle">Fansipan Mountain</h2>				            
+			            <div class="row articleSection pt-md-4">
+				            Fansipan is branded �the Roof of Indochina� at the height of 3, 143m; Fansipan is to be approved as one of the very few eco-tourist spots of Vietnam, 
+				            with about 2, 024 floral varieties and 327 faunal species. The topography of Fansipan is varied. Muong Hoa Valley, at the lowest altitude (950-1, 000m), 
+				            is created by a narrow strip of land at the base on the east side of the mountain.
+			            </div>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/10.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Fansipan Mountain</p>
+			            </p>
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/11.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Fansipan Mountain</p>
+			            </p>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/12.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Fansipan Mountain</p>
+			            </p>	
+			            
+			            <h2 class="mb-3 mt-5 articleSectionTitle">Silver Waterfall</h2>				            
+			            <div class="row articleSection pt-md-4">
+				            The Silver Waterfall in Sapa, or as the locals like to call it Thac Bac, is one of the most beautiful waterfalls in the region. 
+				            Head north along the Sapa loop road and discover this raging waterfall in the San Sai Ho mountainside.
+			            </div>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/13.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Silver Waterfall</p>
+			            </p>
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/14.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Silver Waterfall</p>
+			            </p>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/15.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Silver Waterfall</p>
+			            </p>
+			            
+			            <h2 class="mb-3 mt-5 articleSectionTitle">Love Waterfall</h2>				            
+			            <div class="row articleSection pt-md-4">
+				            Apart from the trekking routes, rice fields and food, Sapa has a little hidden gem. The Love Waterfall is situated just 14 kilometers away from the city, 
+				            surrounded by unspoiled nature. I absolutely loved this place. It is incredible how connected I felt with the nature there.
+			            </div>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/16.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Love Waterfall</p>
+			            </p>
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/17.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Love Waterfall</p>
+			            </p>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/18.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Love Waterfall</p>
+			            </p>
+			            
+			            <h2 class="mb-3 mt-5 articleSectionTitle">Fansipan Mountain trekking</h2>				            
+			            <div class="row articleSection pt-md-4">
+				            Fansipan (or Phan Xi Pang in Vietnamese) is the highest mountain in Indochina. At 3,143m (10,312ft) it`s a real mountain, 
+				            but can be climbed without any specialist equipment or guides or porters.
+			            </div>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/19.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Fansipan Mountain trekking</p>
+			            </p>
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/20.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Fansipan Mountain trekking</p>
+			            </p>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/21.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Fansipan Mountain trekking</p>
+			            </p>
+			            
+			            <h2 class="mb-3 mt-5 articleSectionTitle">Lao Chai village trekking</h2>				            
+			            <div class="row articleSection pt-md-4">
+				            Lao Chai village is 6 km far from the centre town, you will see Lao Chai village where the black H`mong people are living, 
+				            it is also the beginning of a valley which is called Muong Hoa valley. From a high point of the main road 8 Km from Sapa town, 
+				            great view of the whole village open wide to offer the marvelous panorama of the village, backed by high mountains and facing the river
+			            </div>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/22.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Lao Chai village trekking</p>
+			            </p>
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/23.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Lao Chai village trekking</p>
+			            </p>	
+			            <p class="article-img">			            
+				            <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-12/24.jpg}" alt="" class="img-fluid">
+				            <p class="article-img-title">Image: Lao Chai village trekking</p>
+			            </p>		            		            
+			            
+			            <h2 class="mb-3 mt-5 articleSectionTitle">Google Album</h2>				            
+			            <div class="row articleSection pt-md-4">
+				            Many more pictures from this area with more detailed descriptions (in Polish language) you can find in my 
+				            <a href="https://photos.app.goo.gl/4JYWjTyVrAvNvmP47" target="blank">Google Album</a>.
+			            </div>		
+			                                 	
+			    	
+		    		<div class="form-group article-button">
+			        	<a th:href="|javascript:submitAction('articleForm', 'back')|" class="btn py-3 px-4 btn-primary">Go Back</a>
+			         </div>		         
+					
+	    		</div>    	
+		</div><!-- END COLORLIB-MAIN -->
+	</form>	
+	</div><!-- END COLORLIB-PAGE -->
+
+  	<js th:replace="common/js"/>
+    
+  </body>
+</html>

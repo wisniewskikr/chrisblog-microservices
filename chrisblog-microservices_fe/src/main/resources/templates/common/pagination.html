@@ -1,0 +1,21 @@
+<input type="hidden" th:field="*{currentPage}"/>
+<div class="row" th:unless="*{#lists.isEmpty(articles)}">
+  <div class="col text-center text-md-left">
+    <div class="block-27">
+      <ul>
+        <!-- TODO: implement color for disabled -->
+        <li th:if="*{disablePrevious}" class="disabled"><span>&lt;</span></li>
+        <li th:unless="*{disablePrevious}"><a th:href="|javascript:submitPagination('listForm', '/', *{currentPage} - 1)|">&lt;</a></li>
+        
+        <span th:each="page : *{pages}">
+        	<li th:if="${#strings.equals(page, #strings.toString(command.currentPage))}" class="active"><span th:text="${page}"/></li>
+        	<li th:unless="${#strings.equals(page, #strings.toString(command.currentPage))}"><a th:href="|javascript:submitPagination('listForm', '/', ${page})|" th:text="${page}"></a></li>
+        </span>
+        
+        <!-- TODO: implement color for disabled -->
+        <li th:if="*{disableNext}" class="disabled"><span>&gt;</span></li>
+        <li th:unless="*{disableNext}"><a th:href="|javascript:submitPagination('listForm', '/', *{currentPage} + 1)|">&gt;</a></li>
+      </ul>
+    </div>		            
+  </div>
+</div>

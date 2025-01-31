@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    
+  <head th:replace="common/head :: head ('Chris Blog - Home', 'Blog about Chris experiences with IT, books, movies and travels')"/>
+  
+  <body>  
+
+	<div id="colorlib-page" th:object="${command}">
+	<form id="listForm" method="post">
+		<input type="hidden" th:field="*{selectedCategory}"/>
+		<input type="hidden" th:field="*{selectedArticle}"/>
+		<input type="hidden" th:field="*{selectedTag}"/>
+		
+		<a id="navigation" href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
+		
+			<nav id="colorlib-main-menu" role="navigation">			
+				<ul>
+					<li th:class="*{selectedCategory == 'home' ? 'colorlib-active' : ''}"> <a th:href="|javascript:submitCategory('listForm', '/', 'home')|">Home</a> </li>
+					<span  th:each="category : ${categories}">
+						<li th:class="*{selectedCategory} eq ${category.id} ? 'colorlib-active' : ''"> <a th:href="|javascript:submitCategory('listForm', '/', '${category.id}')|"><span th:text="${category.name}"/></a> </li>
+					</span>
+					<li> <a th:href="|javascript:submitAction('listForm', 'about')|">About Me</a> </li>			
+				</ul>
+			</nav>
+			
+            <!-- Display only on small screens -->
+            <span class="display-on-small-screen">
+	            <div class="sidebar-box ftco-animate search-section">
+		            <h3 class="sidebar-heading section-header">Sorting</h3>
+		            <div class="search-form">
+			            <div class="form-group">
+			              	<select class="form-control sorting-no-xl-screen" th:field="*{selectedSorting}" th:onChange="|submitSorting('listForm', '/')|">
+								<option th:each="sort : ${sorting}" th:value="${sort.value}" th:text="${sort.text}"/>			        
+							</select>
+			            </div>
+			           </div> 
+		           </div>
+	           </span>
+            
+            <div class="sidebar-box ftco-animate search-section">
+	            <h3 class="sidebar-heading section-header">Search</h3>
+	            <div class="search-form">
+		            <div class="form-group">
+		              	<span th:if="*{#strings.isEmpty(searchText)}" class="icon icon-search" th:onClick="|submitSearchIcon('listForm', '/')|"></span>
+		              	<span th:unless="*{#strings.isEmpty(searchText)}" class="icon icon-cross" th:onClick="|submitClearSearchIcon('listForm', '/')|"></span>
+		              	<input type="text" class="form-control" placeholder="Type a keyword" th:field="*{searchText}" th:onkeydown="|submitSearchInput('listForm', '/')|"/>
+		            </div>
+		           </div> 
+	           </div>
+            
+	            <div class="sidebar-box ftco-animate tag-section" th:unless="*{selectedCategory == 'home'}">
+	              	<h3 class="sidebar-heading section-header">Tag Cloud</h3>
+	              	<ul class="tagcloud" >
+	              		<span th:if="*{not #lists.isEmpty(tags)}" th:each="tag : *{tags}">
+	              			<a th:unless="*{selectedTag} eq ${tag.id}" th:href="|javascript:submitClickTag('listForm', '/', '${tag.id}')|" class="tag-cloud-link no-selected" th:text="${tag.name}"/>
+	              			<a th:if="*{selectedTag} eq ${tag.id}" th:href="|javascript:submitUnclickTag('listForm', '/')|" class="tag-cloud-link selected" th:text="${tag.name}"/>
+	              		</span>
+	              		<span th:if="*{#lists.isEmpty(tags)}">
+	              			There is no tag yet.
+	              		</span>
+	              	</ul>
+	            </div> 		
+			
+				<span class=" d-none d-xl-block">
+					<footerList th:replace="common/footer"/>
+				</span>
+			
+		</aside> <!-- END COLORLIB-ASIDE -->
+		
+		
+		
+		<div id="colorlib-main">
+			<section class="ftco-section">
+			
+				<div class="container">
+					<div class="row px-md-4">
+						
+						<!-- Display only on big screens -->
+						<span class="display-on-big-screen col-md-12">
+							<div class="form-group row sorting-row ">
+								<label for="sorting" class="col-md-2 col-form-label lb-lg sorting">Sorting:</label>
+								<div class="col-md-4">
+								    <select class="form-control sorting" th:field="*{selectedSorting}" th:onChange="|submitSorting('listForm', '/')|">
+								    	<option th:each="sort : ${sorting}" th:value="${sort.value}" th:text="${sort.text}"/>			        
+								    </select>
+							    </div>
+						    </div>
+					    </span>
+										
+						<span th:if="*{not #lists.isEmpty(articles)}" th:each="article : *{articles}">						
+							<div class="col-md-12">
+								<div class="blog-entry ftco-animate d-md-flex">
+									<a th:href="|javascript:submitArticle('listForm', '/article', '${article.id}')|" class="img img-2" th:style="|background-image: url(https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-${article.id}/main.jpg);|"></a>
+									<div class="text text-2 pl-md-4">
+				              			<h3 class="mb-2"><a th:href="|javascript:submitArticle('listForm', '/article', '${article.id}')|"><span th:text="${article.title}"/></a></h3>
+				              			<div class="meta-wrap">
+											<p class="meta">
+					              				<span><i class="icon-calendar mr-2"></i><span th:text="${article.date}"/></span>
+					              				<span><i class="icon-person mr-2"></i><span th:text="${article.author}"/></a></span>					              				
+												<!-- TODO -->
+					              				<!-- span><i class="icon-folder mr-2"></i><span th:text="${article.category.name}"/></span -->
+					              			</p>
+			              				</div>
+				              			<p class="mb-4" th:utext="${article.description}"/>
+				              			<p><a th:href="|javascript:submitArticle('listForm', '/article', '${article.id}')|" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+			            			</div>
+								</div>
+							</div>						
+						</span>									
+					</div>				
+					
+					<pagination th:if="*{not #lists.isEmpty(articles)}" th:replace="common/pagination"/>
+					
+					<span th:if="*{#lists.isEmpty(articles)}">
+	              			There is no article yet.
+	              	</span>    
+					
+				</div>
+				
+					
+						        
+		       </section>
+			</div>
+		
+		</form>		
+		</div><!-- END COLORLIB-MAIN -->
+		
+		<js th:replace="common/js"/>
+    
+  </body>
+</html>

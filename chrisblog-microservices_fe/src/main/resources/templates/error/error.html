@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  
+  <head th:replace="common/head :: head ('Chris Blog - Error', 'Error Page')"/>
+  
+  <body class="h-100">
+
+	<div class="row h-100 justify-content-center align-items-center">
+		<div>	
+			<div class="row justify-content-center">
+				<h1><span class="error-sign">Ooops!</span></h1>
+			</div>
+			<div class="row justify-content-center">
+				<h2 class="error-title" th:text="${errorTitle}">Error Title</h2>
+			</div>
+			<div class="row justify-content-center">
+				<p th:text="${errorText}">Error Text</p>
+			</div>
+			<div class="row justify-content-center">
+				<a th:href="@{/}" class="btn py-3 px-4 btn-primary">Go To List</a>
+			</div>	
+		</div>		  		
+	</div>
+	
+	<js th:replace="common/js"/>
+    
+  </body>
+</html>

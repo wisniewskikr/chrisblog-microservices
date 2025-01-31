@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" th:object="${command}">
+  
+  <head th:replace="common/head :: head (*{article.title}, *{article.pageDescription})"/>
+  
+  <body onload="showAnswers(false);">
+
+	<div id="colorlib-page">
+	<form id="articleForm" method="post">
+		<input type="hidden" th:field="*{articleId}"/>
+		<input type="hidden" th:field="*{currentPage}"/>
+		<input type="hidden" th:field="*{selectedCategory}"/>
+		<input type="hidden" th:field="*{selectedSorting}"/>
+		<input type="hidden" th:field="*{selectedTag}"/>
+		<input type="hidden" th:field="*{searchText}"/>
+		
+			
+		<div id="colorlib-main" class="article">
+	    	<div class="container">	    			
+	    			<div class="col-lg-12 px-md-7 py-7">
+	    			
+	    				<span class=" d-none d-xl-block">
+		    				<p class="blog-img">
+			    				<a th:href="|javascript:submitAction('articleForm', 'back')|">
+					              <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/common/chris_blog.png}" alt="" class="img-fluid">
+					            </a>
+				            </p>
+			            </span>
+	    				
+	    				<div class="nav d-flex align-items-center full-height">
+	    					<a th:href="|javascript:submitAction('articleForm', 'back')|">
+          						<span class="nav-item">Home</span>
+        					</a>
+        					<a th:href="|javascript:submitAction('articleForm', 'about')|">
+          						<span class="nav-item">About Me</span>
+        					</a>
+	    				</div>
+	    				
+	    				<div class="row articleSection pt-md-4 articleBanner d-flex align-items-center justify-content-center full-height"	    					
+	    					style="background-image: url(https://chrisblog.s3-eu-west-1.amazonaws.com/banner/Books/banner.jpg);"
+	    					>
+    						<div class="col-lg-12 px-md-7 py-7" >
+    							<div class="row articleSection d-flex align-items-center justify-content-center full-height ">
+    								<div class="mb-3 articleBannerText" th:text="*{article.title}">Article Title</div>
+    							</div>
+    							<div class="row articleSection meta-wrap">
+    								<p>
+	              						<span class="icon-wrap"><i class="icon-calendar mr-2"></i><span th:text="*{article.date}"/></span>
+	              						<span class="icon-wrap"><i class="icon-person mr-2"></i><span th:text="*{article.author}"/></a></span>	              						
+	              						<!-- span class="icon-wrap"><i class="icon-folder mr-2"></i><span th:text="*{article.category.name}"/></span -->
+	              					</p>
+    							</div>
+    						</div>
+    					</div> 
+    					
+    					<span class="d-none d-xl-block">
+	    					<div class="avatarIcon">
+								<div class="avatar">
+									<img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/common/none.png}" alt="">
+								</div>
+								<span class="author_name">By: <b th:text="*{article.author}"/></span>
+							</div>
+						</span> 
+						
+						<hr class="line d-none d-xl-block">						
+    						
+   						<h2 class="mb-3 mt-5 articleSectionTitle">Introduction</h2>
+   						<div class="row articleSection pt-md-4" th:utext="*{article.description}">Article desciption</div>
+   						
+   						<p class="article-img">
+			              <img th:src="@{https://chrisblog.s3-eu-west-1.amazonaws.com/articles/article-{articleId}/main.jpg(articleId=*{articleId})}" alt="" class="img-fluid">
+			            </p>
+			            <p class="article-img-title">Image: How to Win Friends and Influence People; Dale Carnegie</p>		               		
+			         
+			         	<h2 class="mb-3 mt-5 articleSectionTitle">Fundamental Techniques in Handling People</h2>				            
+			            <div class="row articleSection pt-md-4">
+				            <ol>
+				            	<li><b>Don't criticize, condemn, or complain</b>: Human nature does not like to admit fault. When people are criticized or humiliated, 
+				            	they rarely respond well and will often become defensive and resent their critic. To handle people well, we must never criticize, 
+				            	condemn or complain because it will never result in the behavior we desire. Additional information:
+				            	<ul>
+				            		<li>The science discovered tha animal learns quicker and remember longer if they are rewarded, not punished;</li>
+				            		<li>When we criticize someone then very often this person won't change. He/she will try to find explainetion for his/her behaviors.
+				            		Example: prisoners almost never admit that it's their fault to be in a prison. Almost always guilty is somebody else but not them.</li>				            		
+				            	</ul> 				            	
+				            	</li>
+				            	<li><b>Give honest and sincere appreciation</b>: Appreciation is one of the most powerful tools in the world. 
+				            	People will rarely work at their maximum potential under criticism, but honest appreciation brings out their best. 
+				            	Appreciation, though, is not simple flattery, it must be sincere, meaningful and with love. Additional information:
+				            	<ul>
+				            		<li>The sense of importance is very important for human. They like to be appreciated;</li>
+				            		<li>Lack of appreciation is very common reason for breakdown of relationships;</li>
+				            		<li>Emerson said: Any person who I meet is in some area better them me. That's how I see people.</li>
+				            	</ul>
+				            	</li>
+				            	<li><b>Arouse in the other person an eager want</b>: To get what we want from another person, 
+				            	we must forget our own perspective and begin to see things from the point of view of others. 
+				            	When we can combine our desires with their wants, they become eager to work with us and we can mutually achieve our objectives.
+				            	Additional information:
+				            	<ul>
+				            		<li>You have always ask yourself: <b>How to make that he/she wants to do it?</b> Example: One couple had trouble getting their boy to eat. 
+				            		Finally they said that if he eats everything then he will be stronger then other boys. This was something what this boy wanted. 
+				               		From this moment he always ate everything.
+				            		</li>
+				            	</ul>
+				            	</li>
+				            </ol>
+			            </div>
+			            
+			            <h2 class="mb-3 mt-5 articleSectionTitle">Six Ways to Make People Like You</h2>				            
+			            <div class="row articleSection pt-md-4">
+				            <ol>
+				            	<li><b>Become genuinely interested in other people</b>: "You can make more friends in two months by being interested in them, 
+				            	than in two years by making them interested in you." The only way to make quality, 
+				            	lasting friendships is to learn to be genuinely interested in them and their interests.</li>
+				            	<li><b>Smile</b>: Happiness does not depend on outside circumstances, but rather on inward attitudes. 
+				            	Smiles are free to give and have an amazing ability to make others feel wonderful. Smile in everything that you do.
+				            	Additional information:
+				            	<ul>
+				            		<li>Nobody is so reach that can live without it; Nobody is so poor that can not afford for it;</li>
+				            		<li>Actions are more important then words. And smile says: I like you. I'm happy that I see you. You makes me happy;</li>
+				            		<li>What we are wearing on the face is more important than what we are wearing on the body;</li>
+				            		<li>The science discovered that actions and feelings are connected. So when you are happy then you smile. 
+				            		But it also works opposite: when you smile then you become happy;</li>
+				            		<li>Lincoln said: People are as happy as they think that they are happy. It means that what you poses or what you do dosen't make you happy.
+				            		Important is what do you think about it.</li>
+				            	</ul>
+				            	</li>
+				            	<li><b>Remember that a person's name is, to that person, the sweetest and most important sound in any language</b>: 
+				            	"The average person is more interested in their own name than in all the other names in the world put together." 
+				            	People love their names so much that they will often donate large amounts of money just to have a building named after themselves. 
+				            	We can make people feel extremely valued and important by remembering their name.
+				            	Additional information:
+				            	<ul>
+				            		<li>Good manners consist of small sacrifices.</li>
+				            	</ul>
+				            	</li>
+				            	<li><b>Be a good listener. Encourage others to talk about themselves</b>: The easiest way to become a good conversationalist is to become a good listener. 
+				            	To be a good listener, we must actually care about what people have to say. Many times people don't want an entertaining conversation partner; 
+				            	they just want someone who will listen to them.
+				            	Additional information:
+				            	<ul>
+				            		<li>Give the other person your full attention;</li>
+				            		<li>Ask questions which your interlocutor answers with pleasure;</li>
+				            		<li>When somebody argues then let him to talk. And at the end thank you for conversation. 
+				            		Assure that you have listened more eager then he has argued.</li>
+				            	</ul>
+				            	</li>
+				            	<li><b>Talk in terms of the other person's interest</b>:  The royal road to a person's heart is to talk about the things he or she treasures most. 
+				            	If we talk to people about what they are interested in, they will feel valued and value us in return.</li>
+				            	<li><b>Make the other person feel important - and do it sincerely</b>: The golden rule is to treat other people how we would like to be treated. 
+				            	We love to feel important and so does everyone else. People will talk to us for hours if we allow them to talk about themselves. 
+				            	If we can make people feel important in a sincere and appreciative way, then we will win all the friends we could ever dream of.
+				            	Use often following sentences:
+				            	<ul>
+				            		<li>Could you ...?</li>
+				            		<li>I'm sorry to disturb you but ...?</li>
+				            		<li>Can I ask ...?</li>
+				            		<li>Do you have something against than ...?</li>
+				            		<li>Thank you.</li>
+				            	</ul>
+				            	</li>
+				            </ol>
+			            </div>
+			            
+			            <h2 class="mb-3 mt-5 articleSectionTitle">Twelve Ways to Win People to Your Way of Thinking</h2>				            
+			            <div class="row articleSection pt-md-4">
+				            <ol>				            	
+				            	<li><b>The only way to get the best of an argument is to avoid it</b>: Whenever we argue with someone, no matter if we win or lose the argument, 
+				            	we still lose. The other person will either feel humiliated or strengthened and will only seek to bolster their own position. 
+				            	We must try to avoid arguments whenever we can.
+				            	Additional information:
+				            	<ul>
+				            		<li>Be glad when you hear different opinion. Maybe you can learn something;</li>
+				            		<li>Don't react instinctively. A person's class can be recognized by what upsets him;</li>
+				            		<li>Listen first. Then talk;</li>
+				            		<li>Look for common points;</li>
+				            		<li>Give time you and your opponent to thing about topic;</li>
+				            		<li>Thank you for conversation.</li>
+				            	</ul>
+				            	</li>
+				            	<li><b>Show respect for the other person's opinions. Never say "You're wrong."</b>:  We must never tell people flat out that they are wrong. 
+				            	It will only serve to offend them and insult their pride. No one likes to be humiliated; we must not be so blunt.
+				            	Additional information:
+				            	<ul>
+				            		<li>You should say: I think that you are wrong. But maybe I'm wrog. I'm wrong very often. Please correct my if I'm wrog;</li>
+				            		<li>When you admire that you can be wrong than you don't lose anything. But you can win a lot.</li>
+				            	</ul>
+				            	</li>
+				            	<li><b>If you're wrong, admit it quickly and emphatically</b>: Whenever we are wrong we should admit it immediately. When we fight we never get enough, 
+				            	but by yielding we often get more than we expected. When we admit that we are wrong people trust us and begin to sympathize with our way of thinking.
+				            	Additional information:
+				            	<ul>
+				            		<li>If we know that we did something wrong it's better to say it first. It's better to admit it openly.</li>
+				            	</ul>
+				            	</li>
+				            	<li><b>Begin in a friendly way</b>: "A drop of honey can catch more flies than a gallon of gall." If we begin our interactions with others in a friendly way, 
+				            	people will be more receptive. Even if we are greatly upset, we must be friendly to influence people to our way of thinking.
+				            	Additional information:
+				            	<ul>
+				            		<li>Is somebody says "No" first time then his proud won't let him change the opinion. So we shouldn't let him say "No". 
+				            		He should say "Yes" as many times as possible;</li>
+				            		<li>Chinese saying: Who goes slowly, goes far.</li>
+				            	</ul>
+				            	</li>
+				            	<li><b>Start with questions to which the other person will answer yes</b>: Do not begin by emphasizing the aspects in which we and the other person differ. 
+				            	Begin by emphasizing and continue emphasizing the things on which we agree. People must be started in the affirmative direction and they will often follow 
+				            	readily. Never tell someone they are wrong, but rather lead them where we would like them to go with questions that they will answer "yes" to.</li>
+				            	<li><b>Let the other person do a great deal of the talking</b>: People do not like listening to us boast, they enjoy doing the talking themselves. 
+				            	Let them rationalize and talk about the idea, because it will taste much sweeter to them in their own mouth.
+				            	Additional information:
+				            	<ul>
+				            		<li>Traditional saying: If you want to have enemies then be better than your friends. If you wan to have friengs then let them be better than you.</li>
+				            	</ul>
+				            	</li>
+				            	<li><b>Let the other person feel the idea is his or hers</b>: People inherently like ideas they come to on their own better than those that are handed to them 
+				            	on a platter. Ideas can best be carried out by allowing others to think they arrived at it themselves.</li>
+				            	<li><b>Try honestly to see things from the other person's point of view</b>: Other people may often be wrong, but we cannot condemn them. 
+				            	We must seek to understand them. Success in dealing with people requires a sympathetic grasp of the other person's viewpoint.</li>
+				            	<li><b>Be sympathetic with the other person's ideas and desires</b>: People are hungering for sympathy. They want us to recognize all that they desire and feel. 
+				            	If we can sympathize with others, they will appreciate our side as well and will often come around to our way of thinking.
+				            	Additional information:
+				            	<ul>
+				            		<li>Useful sentance: I don't blame you what you are feeling. If I were you I would feel the same.</li>
+				            	</ul>
+				            	</li>
+				            	<li><b>Appeal to the nobler motives</b>: Everyone likes to be glorious in their own eyes. People believe that they do things for noble and morally upright 
+				            	reasons. If we can appeal to others' noble motives we can successfully convince them to follow our ideas.
+				            	Additional information:
+				            	<ul>
+				            		<li>In most cases even frauds will behave honestly if we let them know that we think about them as good and honest people.</li>
+				            	</ul>
+				            	</li>
+				            	<li><b>Dramatize your ideas</b>: In this fast-paced world, simply stating a truth isn't enough. The truth must be made vivid, interesting, and dramatic. 
+				            	Television has been doing it for years. Sometimes ideas are not enough and we must dramatize them.</li>
+				            	<li><b>Throw down a challenge</b>: The thing that most motivates people is the game. Everyone desires to excel and prove their worth. 
+				            	If we want someone to do something, we must give them a challenge and they will often rise to meet it.
+				            	Additional information:
+				            	<ul>
+				            		<li>The best motivation is a desire to be better then others;</li>
+				            		<li>Ancient saying: Everybody is afraid but courageous people don't think about fear. They move forward, sometimes for a death, but always for a victory.</li>
+				            	</ul>
+				            	</li>				            	
+				            </ol>
+			            </div>
+			            
+			            <h2 class="mb-3 mt-5 articleSectionTitle">Be a Leader: How to Change People Without Giving Offense or Arousing Resentment</h2>				            
+			            <div class="row articleSection pt-md-4">
+				            <ol>				            	
+				            	<li><b>Begin with praise and honest appreciation</b>: People will do things begrudgingly for criticism and an iron-fisted leader, 
+				            	but they will work wonders when they are praised and appreciated.
+				            	Additional information:
+				            	<ul>
+				            		<li>Start with appreciation and then show mistakes. It's like with a dentist: first anesthetized and then pain.</li>
+				            	</ul>
+				            	</li>
+				            	<li><b>Call attention to people's mistakes indirectly</b>: No one likes to make mistakes, especially in front of others. 
+				            	Scolding and blaming only serve to humiliate. If we subtly and indirectly show people mistakes, they will appreciate us and be more likely to improve.
+				            	Additional information:
+				            	<ul>
+				            		<li>Replace "but" with "and";</li>
+				            		<li> Example of bad sentence: We are proud of you but if you work on your math then you will be better;</li>
+				            		<li> Example of good sentence: We are proud of you and if you work on your math then you will be better.</li>
+				            	</ul>
+				            	</li>
+				            	<li><b>Talk about your own mistakes before criticizing the other person</b>: When something goes wrong, taking responsibility can help win others to your side. 
+				            	People do not like to shoulder all the blame and taking credit for mistakes helps to remove the sting from our critiques of others.
+				            	Additional information:
+				            	<ul>
+				            		<li>People easier admit their mistakes if you first talk about your mistakes.</li>				            		
+				            	</ul>				            	
+				            	</li>
+				            	<li><b>Ask questions instead of giving direct orders</b>: No one likes to take orders. If we offer suggestions, rather than orders, it will boost others' 
+				            	confidence and allow them to learn quickly from their mistakes.
+				            	Additional information:
+				            	<ul>
+				            		<li>Lack of orders enables to save face;</li>
+				            		<li>Lack of orders gives feeling of a importance;</li>
+				            		<li>Lack of orders encourages to cooperation instead of fight.</li>		            		
+				            	</ul>	
+				            	</li>
+				            	<li><b>Let the other person save face</b>: Nothing diminishes the dignity of a man quite like an insult to his pride. If we don't condemn our employees 
+				            	in front of others and allow them to save face, they will be motivated to do better in the future and confident that they can.
+				            	Additional information:
+				            	<ul>
+				            		<li>Never criticize in the public;</li>
+				            		<li>When you dismiss an employee then always say compliments.</li>
+				            	</ul>
+				            	</li>
+				            	<li><b>Praise every improvement</b>: People love to receive praise and admiration. If we truly want someone to improve at something, 
+				            	we must praise their every advance. "Abilities wither under criticism, they blossom under encouragement."
+				            	Additional information:
+				            	<ul>
+				            		<li>Psychologist Skinner proved that praise is better then criticism. Praised animals learned faster and remembered longer.</li>
+				            	</ul>
+				            	</li>
+				            	<li><b>Give the other person a fine reputation to live up to</b>: If we give people a great reputation to live up to, they will desire to embody the 
+				            	characteristics with which we have described them. People will work with vigor and confidence if they believe they can be better.
+				            	Additional information:
+				            	<ul>
+				            		<li>If you want to change people behavior, act as if that they've already possessed the desired feature;</li>
+				            		<li>Tell people that you have good opinion about them - they are reasonable, will listen to arguments and change their mind if necessary - 
+				            		and they will do everything to behave in such way.</li>
+				            	</ul>				            	
+				            	</li>
+				            	<li><b>Use encouragement. Make the fault seem easy to correct</b>: If a desired outcome seems like a momentous task, people will give up and lose heart. 
+				            	But if a fault seems easy to correct, they will readily jump at the opportunity to improve. If we frame objectives as small and easy improvements, 
+				            	we will see dramatic increases in desire and success in our employees.</li>
+				            	<li><b>Make the other person happy about doing what you suggest</b>: People will most often respond well when they desire to do the behavior put forth. 
+				            	If we want to influence people and become effective leaders, we must learn to frame our desires in terms of others' desires.
+				            	Additional information:
+				            	<ul>
+				            		<li>In case of refusal, do not waste any time. Offer an alternative right away;</li>
+				            		<li>Show people benefits. For instance: if you do it now then you won't have to do it in the future. Or you will get a reward: title or money.</li>
+				            	</ul>
+				            	</li>
+				            </ol>
+			            </div>
+			            
+			            <div class="form-group article-button">
+			        	<a th:href="|javascript:submitAction('articleForm', 'back')|" class="btn py-3 px-4 btn-primary">Go Back</a>
+			         </div>			         
+					
+	    		</div>    	
+		</div><!-- END COLORLIB-MAIN -->
+	</form>	
+	</div><!-- END COLORLIB-PAGE -->
+
+  	<js th:replace="common/js"/>
+    
+  </body>
+</html>
