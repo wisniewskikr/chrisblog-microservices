@@ -15,6 +15,7 @@
 
 	<properties>
 		<java.version>23</java.version>
+		<spring-cloud.version>2024.0.0</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -53,9 +54,23 @@
 	    </dependency>	
 
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 		
 	<build>
 		<plugins>
+
+			<!-- Required to display version of application -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -68,6 +83,8 @@
 			        </execution>
 			    </executions>
 			</plugin>
+
+			<!-- Required to handle Lombok -->
 			 <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -80,6 +97,7 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+			
 		</plugins>
 	</build>	
 	
