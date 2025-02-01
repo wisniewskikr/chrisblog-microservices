@@ -4,7 +4,10 @@ USAGE
 ##### Required steps:
 1. Start **Docker** tool
 1. In a command line tool **start Docker containers** with `docker-compose -f .\docker-compose\docker-compose.yaml up -d --build`
+1. In a browser visit **Discovery page** with `http://localhost:8761`
+    * Expected HTML page with Discovery dashboard
 1. In the browser visit **blog page** with `http://localhost:8080`
+    * Expected HTML page with blog page
 1. Clean up environment
     * In a command line tool **remove Docker containers** with `docker-compose -f .\docker-compose\docker-compose.yaml down --rmi all`
     * Stop **Docker** tool
