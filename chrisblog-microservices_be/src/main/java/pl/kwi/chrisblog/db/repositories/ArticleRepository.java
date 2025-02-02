@@ -8,9 +8,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
+import io.micrometer.observation.annotation.Observed;
 import pl.kwi.chrisblog.db.entities.ArticleEntity;
 
-
+@Observed
 public interface ArticleRepository extends PagingAndSortingRepository<ArticleEntity, Long> {
 
 	@Query("SELECT a FROM ArticleEntity a WHERE a.id = (:articleId)")
