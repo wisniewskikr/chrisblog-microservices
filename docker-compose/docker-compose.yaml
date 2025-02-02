@@ -38,26 +38,6 @@ services:
       retries: 5
       start_period: 10s
 
-  gateway:
-    image: gateway:0.0.1
-    container_name: gateway
-    build:
-      context: ./../chrisblog-microservices_gateway
-      dockerfile: Dockerfile
-    environment:
-      fe.service.url: http://fe:8080
-      eureka.client.service-url.defaultZone: http://discovery:8761/eureka
-    depends_on:
-      - discovery
-    ports:
-      - 8762:8762
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8762/actuator/health"]
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 10s
-
   be:
     image: be:0.0.1
     container_name: be
@@ -93,6 +73,27 @@ services:
       - 8080:8080
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+
+  gateway:
+    image: gateway:0.0.1
+    container_name: gateway
+    build:
+      context: ./../chrisblog-microservices_gateway
+      dockerfile: Dockerfile
+    environment:
+      fe.service.url: http://fe:8080
+      eureka.client.service-url.defaultZone: http://discovery:8761/eureka
+    depends_on:
+      - discovery
+      - fe
+    ports:
+      - 8762:8762
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8762/actuator/health"]
       interval: 10s
       timeout: 10s
       retries: 5
