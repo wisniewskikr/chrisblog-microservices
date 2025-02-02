@@ -8,6 +8,8 @@ USAGE
     * Expected HTML page with Discovery dashboard
 1. In the browser visit **Blog page via API Gateway** with `http://localhost:8762`
     * Expected HTML page with Blog page
+1. In a browser **check logs, traces, and metrics in Grafana** with `http://localhost:3000`
+    * Expected HTML page with Grafana dashboard (please check section EXAMPLE).
 1. Clean up environment
     * In a command line tool **remove Docker containers** with `docker-compose -f .\docker-compose\docker-compose.yaml down --rmi all`
     * Stop **Docker** tool
