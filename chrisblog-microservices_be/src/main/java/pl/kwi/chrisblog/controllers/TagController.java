@@ -6,12 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.slf4j.Slf4j;
 import pl.kwi.chrisblog.dtos.TagRequest;
 import pl.kwi.chrisblog.dtos.TagResponse;
 import pl.kwi.chrisblog.services.TagService;
 
 @RestController
 @CrossOrigin("${fe.url}")
+@Slf4j
 public class TagController {
 
 
@@ -32,7 +34,10 @@ public class TagController {
         @RequestParam("sorting") String sorting,
         @RequestParam(value = "searchText", required = false) String searchText 
     ) {
+
+        log.info("Find tag with category id: " + categoryId);
         return tagService.findTags(new TagRequest(categoryId, tagId, page, sorting, searchText));
+
     }
     
     

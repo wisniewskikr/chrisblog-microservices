@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.slf4j.Slf4j;
 import pl.kwi.chrisblog.db.entities.ArticleEntity;
 import pl.kwi.chrisblog.dtos.ArticleRequest;
 import pl.kwi.chrisblog.dtos.ArticleResponse;
@@ -14,6 +15,7 @@ import pl.kwi.chrisblog.services.ArticleService;
 
 @RestController
 @CrossOrigin("${fe.url}")
+@Slf4j
 public class ArticleController {
 
 
@@ -34,13 +36,17 @@ public class ArticleController {
         @RequestParam(value = "searchText", required = false) String searchText 
         ) {
 
-        return articleService.findArticles(new ArticleRequest(categoryId, tagId, page, sorting, searchText));
+            log.info("Find article with category id: " + categoryId);
+            return articleService.findArticles(new ArticleRequest(categoryId, tagId, page, sorting, searchText));
 
     }
 
     @GetMapping("api/v1/article/{id}")
     public ArticleEntity findArticleById(@PathVariable Long id) {
+
+        log.info("Find article with id: " + id);
         return articleService.findArticleById(id);
+
     }
     
 }
