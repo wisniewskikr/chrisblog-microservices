@@ -89,7 +89,6 @@ services:
       eureka.client.service-url.defaultZone: http://discovery:8761/eureka
     depends_on:
       - discovery
-      - fe
     ports:
       - 8762:8762
     healthcheck:
