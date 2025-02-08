@@ -63,6 +63,8 @@ USAGE KUBERNETES (KIND)
 1. In a command line tool push Docker GATEWAY image to Docker Repository with `docker push wisniewskikr/chrisblog-microservices_gateway:0.0.1`
 1. In a command line tool build Docker DISCOVERY image with `docker build -f chrisblog-microservices_discovery/Dockerfile -t wisniewskikr/chrisblog-microservices_discovery:0.0.1 ./chrisblog-microservices_discovery`
 1. In a command line tool push Docker DISCOVERY image to Docker Repository with `docker push wisniewskikr/chrisblog-microservices_discovery:0.0.1`  
+1. In a command line tool build Docker CONFIG image with `docker build -f chrisblog-microservices_config/Dockerfile -t wisniewskikr/chrisblog-microservices_config:0.0.1 ./chrisblog-microservices_config`
+1. In a command line tool push Docker CONFIG image to Docker Repository with `docker push wisniewskikr/chrisblog-microservices_config:0.0.1`
 1. In the first command line tool with administrator privileges check clusers with `kind get clusters`
 1. In a command line tool check Kubernetes Deployments with `kubectl get deployments`
 1. In a command line tool check Kubernetes Deployments details with **kubectl describe deployment {deployment-name}**
