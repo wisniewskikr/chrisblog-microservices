@@ -1,35 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fe
+  name: config
   labels:
-    app: fe
+    app: config
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: fe
+      app: config
   template:
     metadata:
       labels:
-        app: fe
+        app: config
     spec:
       containers:
-      - name: fe
-        image: wisniewskikr/chrisblog-microservices_fe:0.0.1
+      - name: config
+        image: wisniewskikr/chrisblog-microservices_config:0.0.1
         ports:
-        - containerPort: 8080
+        - containerPort: 8888
         env:
-        - name: spring.application.name
-          value: fe
-        - name: spring.config.import
-          value: configserver:http://config:8888
-        - name: LOKI_URL
-          value: http://loki:3100
+        - name: spring.cloud.config.server.native.search-locations
+          value: classpath:/configurations/k8s
         readinessProbe:
           httpGet:
             path: /actuator/health
-            port: 8080
+            port: 8888
           initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 5
@@ -37,7 +33,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /actuator/health
-            port: 8080
+            port: 8888
           initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 5
@@ -49,10 +45,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: fe
+  name: config
 spec:
   selector:
-    app: fe
+    app: config
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 8888
+      targetPort: 8888
